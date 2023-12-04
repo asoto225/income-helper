@@ -1,11 +1,23 @@
-const { User } = require('../models');
+const { User, Income, Expense } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
     Query: {
+        user: async (parent, { username}, context) => {
+            return User.findOne({ username }).populate('income').populate('expense');
+
+        },
+        income: async (parent, {username}) => {
+            const params = username ? { username } : {};
+            return Income.find(params).sort({ incomeDate: -1 });
+        },
+        expense: async (parent, { username }) => {
+            const params = username ? { username } : {};
+            return Expense.find(params).sort({ expenseDate: -1 });
+        },
         me: async (parent, args, context) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id })
+                return User.findOne({ _id: context.user._id }).populate('income').populate('expense');
             }
             throw AuthenticationError;
         },
@@ -32,6 +44,44 @@ const resolvers = {
             console.log(token);
             console.log(user);
             return { token, user };
-        }
+        },
+        addIncome: async (parent , { incomeName, incomeAmount, incomeDate }, context) => {
+            if (context.user) {
+                const income = await Income.create({
+                    incomeName,
+                    incomeAmount,
+                    incomeDate,
+                    incomeUser: context.user._id,
+                });
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { income: income} },
+                    { new: true }
+                );
+                console.log(income);
+                return {
+                    income: income,
+                };
+            };
+        },
+        addExpense: async (parent , { expenseName, expenseAmount, expenseDate }, context) => {
+            if (context.user) {
+                const expense = await Expense.create({
+                    expenseName,
+                    expenseAmount,
+                    expenseDate,
+                    expenseUser: context.user._id,
+                });
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { expense: expense} },
+                    { new: true }
+                );
+                console.log(expense);
+                return {
+                    expense: expense,
+                };
+            }
+        },
     },
-}
+};
