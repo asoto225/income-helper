@@ -14,14 +14,19 @@ const expenseSchema = new Schema({
         type: Date,
         required: true,
     },
+    expenseFrequency: {
+        type: String,
+        required: true,
+    },
     // expenseNote: {
     //     type: String,
     //     required: false,
     // },
-    expenseUser: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-    },
+    // Do i need this? ------------------------
+    // expenseUser: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User',
+    // },
 });
 
 const Expense = model('Expense', expenseSchema);

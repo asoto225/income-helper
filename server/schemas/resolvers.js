@@ -45,12 +45,13 @@ const resolvers = {
             console.log(user);
             return { token, user };
         },
-        addIncome: async (parent , { incomeName, incomeAmount, incomeDate }, context) => {
+        addIncome: async (parent , { incomeName, incomeAmount, incomeDate, incomeFrequency }, context) => {
             if (context.user) {
                 const income = await Income.create({
                     incomeName,
                     incomeAmount,
                     incomeDate,
+                    incomeFrequency,
                     incomeUser: context.user._id,
                 });
                 await User.findByIdAndUpdate(
@@ -64,12 +65,13 @@ const resolvers = {
                 };
             };
         },
-        addExpense: async (parent , { expenseName, expenseAmount, expenseDate }, context) => {
+        addExpense: async (parent , { expenseName, expenseAmount, expenseDate, expenseFrequency }, context) => {
             if (context.user) {
                 const expense = await Expense.create({
                     expenseName,
                     expenseAmount,
                     expenseDate,
+                    expenseFrequency,
                     expenseUser: context.user._id,
                 });
                 await User.findByIdAndUpdate(
