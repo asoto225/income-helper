@@ -3,11 +3,11 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        user: async (parent, { username}, context) => {
+        user: async (parent, { username}) => {
             return User.findOne({ username }).populate('income').populate('expense');
 
         },
-        income: async (parent, {username}) => {
+        income: async (parent, { username }) => {
             const params = username ? { username } : {};
             return Income.find(params).sort({ incomeDate: -1 });
         },
@@ -26,6 +26,8 @@ const resolvers = {
         addUser: async (parent, { username, email, password }) => {
             const user = await User.create({ username, email, password });
             const token = signToken(user);
+            console.log(token);
+            console.log(user);
             return { token, user };
         },
         login: async (parent, { email, password }) => {
@@ -87,3 +89,5 @@ const resolvers = {
         },
     },
 };
+
+module.exports = resolvers;
