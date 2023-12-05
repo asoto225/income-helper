@@ -6,7 +6,7 @@ export const ADD_USER = gql`
             token
             user {
                 _id
-                email
+                username
             }
         }
     }
@@ -27,13 +27,11 @@ export const LOGIN_USER = gql`
 export const ADD_INCOME = gql`
     mutation addIncome($incomeName: String!, $incomeAmount: Int!, $incomeDate: String!, $incomeFrequency: String!){
         addIncome(incomeName: $incomeName, incomeAmount: $incomeAmount, incomeDate: $incomeDate, incomeFrequency: $incomeFrequency){
-            income {
                 _id
                 incomeName
                 incomeAmount
                 incomeDate
                 incomeFrequency
-            }
         }
     }
 `;
@@ -41,13 +39,11 @@ export const ADD_INCOME = gql`
 export const ADD_EXPENSE = gql`
     mutation addExpense($expenseName: String!, $expenseAmount: Int!, $expenseDate: String!, $expenseFrequency: String!){
         addExpense(expenseName: $expenseName, expenseAmount: $expenseAmount, expenseDate: $expenseDate, expenseFrequency: $expenseFrequency){
-            expense {
                 _id
                 expenseName
                 expenseAmount
                 expenseDate
                 expenseFrequency
-            }
         }
     }
 `;

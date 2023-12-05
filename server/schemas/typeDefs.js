@@ -6,8 +6,8 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
-        income: [Income]
-        expense: [Expense]
+        incomes: [Income]
+        expenses: [Expense]
     }
 
     type Income {
@@ -32,9 +32,12 @@ const typeDefs = gql`
     }
 
     type Query {
+        users: [User]
         user(username: String!): User
-        income(username: String): [Income]
-        expense(username: String): [Expense]
+        incomes: [Income]
+        income(_id: ID!): Income
+        expenses: [Expense]
+        expense(_id: ID!): Expense
         me: User
     }
 

@@ -6,10 +6,13 @@ const incomeSchema = new Schema({
         type: String,
         required: true,
         trim: true,
+        min: 1,
+        max: 280,
     },
     incomeAmount: {
         type: Number,
         required: true,
+        trim: true,
     },
     incomeDate: {
         type: Date,

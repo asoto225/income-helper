@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import AuthService from "../utils/auth";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 const Login = () => {
     const [formState, setFormState] = useState({ email: '', password: '' });
@@ -55,8 +55,7 @@ const Login = () => {
                         onChange={handleChange}
                         placeholder="Enter your password"
                     />
-                    <button className="button-login">Login</button>
-
+                    <button type="submit" className="button-login">Login</button>
                 </form>
                 {error && <p>Error: {error.message}</p>}
             </div>

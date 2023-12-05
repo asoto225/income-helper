@@ -1,25 +1,61 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_USER = gql`
-    query user($username: String!) {
-        user(username: $username) {
+export const QUERY_USERS = gql`
+    query users {
+        users {
             _id
             username
             email
-            income {
+            incomes {
                 _id
                 incomeName
                 incomeAmount
                 incomeDate
                 incomeFrequency
             }
-            expense {
+            expenses {
                 _id
                 expenseName
                 expenseAmount
                 expenseDate
                 expenseFrequency
             }
+        }
+    }
+`;
+
+export const QUERY_USER = gql`
+    query user($username: String!) {
+        user(username: $username) {
+            _id
+            username
+            email
+            incomes {
+                _id
+                incomeName
+                incomeAmount
+                incomeDate
+                incomeFrequency
+            }
+            expenses {
+                _id
+                expenseName
+                expenseAmount
+                expenseDate
+                expenseFrequency
+            }
+        }
+    }
+`;
+
+export const QUERY_INCOMES = gql`
+    query incomes {
+        incomes {
+            _id
+            incomeName
+            incomeAmount
+            incomeDate
+            incomeFrequency
         }
     }
 `;
@@ -32,6 +68,18 @@ export const QUERY_INCOME = gql`
             incomeAmount
             incomeDate
             incomeFrequency
+        }
+    }
+`;
+
+export const QUERY_EXPENSES = gql`
+    query expenses {
+        expenses {
+            _id
+            expenseName
+            expenseAmount
+            expenseDate
+            expenseFrequency
         }
     }
 `;
@@ -54,14 +102,14 @@ export const QUERY_ME = gql`
             _id
             username
             email
-            income {
+            incomes {
                 _id
                 incomeName
                 incomeAmount
                 incomeDate
                 incomeFrequency
             }
-            expense {
+            expenses {
                 _id
                 expenseName
                 expenseAmount

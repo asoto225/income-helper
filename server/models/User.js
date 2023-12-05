@@ -19,18 +19,18 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-    income: [
+    incomes: [
         {
         type: Schema.Types.ObjectId,
-        ref: 'Income'
-        }
+        ref: 'Income',
+        },
     ],
-    expense: [
+    expenses: [
         {
         type: Schema.Types.ObjectId,
-        ref: 'Expense'
-        }
-    ]
+        ref: 'Expense',
+        },
+    ],
 });
 
 userSchema.pre('save', async function (next) {
