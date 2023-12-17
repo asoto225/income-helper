@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_EXPENSE } from "../utils/mutations";
 import { Link } from "react-router-dom";
 import AuthService from "../utils/auth";
+import '../App.css'
 
 const AddExpense = () => {
     const [expenseInfo, setExpenseInfo] = useState({
@@ -37,7 +38,7 @@ const AddExpense = () => {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setIncomeInfo({
+        setExpenseInfo({
             ...expenseInfo,
             [name]: value,
         });
@@ -76,11 +77,11 @@ const AddExpense = () => {
                     value={expenseInfo.expenseFrequency}
                     onChange={handleChange}
                 />
-                <button type="submit">Add Income</button>
+                <button type="submit">Add Expense</button>
             </form>
             {error && <div>Something went wrong...</div>}
 
-            <div>
+            <div className="dashboardBtn">
                 <Link to="/dashboard">Back to Dashboard</Link>
             </div>
         </div>

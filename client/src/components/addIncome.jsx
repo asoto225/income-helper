@@ -21,7 +21,7 @@ const AddIncome = () => {
                 variables: { 
                     incomeName: incomeInfo.incomeName,
                     incomeAmount: parseInt(incomeInfo.incomeAmount),
-                    incomeDate: incomeInfo.incomeDate.toDate(),
+                    incomeDate: incomeInfo.incomeDate,
                     incomeFrequency: incomeInfo.incomeFrequency,
                     incomeAuthor: AuthService.getProfile().data.username,
                  },
@@ -80,7 +80,7 @@ const AddIncome = () => {
             </form>
             {error && <div>Something went wrong...</div>}
 
-            <div>
+            <div className="dashboardBtn">
                 <Link to="/dashboard">Back to Dashboard</Link>
             </div>
         </div>

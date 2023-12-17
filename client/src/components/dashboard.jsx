@@ -26,13 +26,33 @@ const Dashboard = () => {
     const username = user.username;
     console.log(username);
     const income = user.incomes;
+    console.log(income, 'income');
+    const expense = user.expenses;
+    console.log(expense, 'expense');
 
     return (
         <div>
             <h1>Welcome, {username} </h1>
             <button onClick={logout}>Logout</button>
             <div>
-                Expenses:
+                Expenses: {expense.map((expense) => (
+                    <div key={expense._id}>
+                        <div>
+                            <div>
+                                Name: {expense.expenseName}
+                            </div>
+                            <div>
+                                Expense Amount: {expense.expenseAmount}
+                            </div>
+                            <div>
+                                Pay Date: {expense.expenseDate}
+                            </div>
+                            <div>
+                                Frequency: {expense.expenseFrequency}
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
             <div>
                 Income: {income.map((income) => (
