@@ -32,6 +32,7 @@ export const ADD_INCOME = gql`
                 incomeAmount
                 incomeDate
                 incomeFrequency
+                incomeAuthor
         }
     }
 `;
@@ -44,6 +45,7 @@ export const ADD_EXPENSE = gql`
                 expenseAmount
                 expenseDate
                 expenseFrequency
+                expenseAuthor
         }
     }
 `;

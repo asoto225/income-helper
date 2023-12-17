@@ -1,14 +1,20 @@
 import React from "react";
-import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../utils/queries";
-import AuthService from "../utils/auth";
 import Dashboard from "../components/Dashboard";
+import { Link } from "react-router-dom";
 
 export default function DashboardPage() {
     return (
         <div>
-        <h1>Dashboard Page</h1>
-        <Dashboard />
+            <h1>Dashboard Page</h1>
+            <div>
+                <Dashboard />
+            </div>
+            <div>
+                <Link to="/addExpense">Add Expense</Link>
+            </div>
+            <div>
+                <Link to="/addIncome">Add Income</Link>
+            </div>
         </div>
     );
 };

@@ -18,6 +18,11 @@ const expenseSchema = new Schema({
         type: String,
         required: true,
     },
+    expenseAuthor: {
+        type: String,
+        required: true,
+        trim: true,
+    }
     // expenseNote: {
     //     type: String,
     //     required: false,

@@ -62,7 +62,7 @@ const resolvers = {
                     incomeAmount,
                     incomeDate,
                     incomeFrequency,
-                    incomeUser: context.user._id,
+                    incomeAuthor: context.user.username,
                 });
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
@@ -83,7 +83,7 @@ const resolvers = {
                     expenseAmount,
                     expenseDate,
                     expenseFrequency,
-                    expenseUser: context.user._id,
+                    expenseAuthor: context.user.username,
                 });
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },

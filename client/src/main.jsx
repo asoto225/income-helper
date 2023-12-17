@@ -7,6 +7,8 @@ import Home from './pages/Home.jsx'
 import Error from './pages/Error.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import CreateAccount from './pages/CreateAccount.jsx'
+import AddIncomePage from './pages/AddIncomePage.jsx'
+import AddExpensePage from './pages/AddExpensePage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <Dashboard />,
       },
+      {
+        path: '/addIncome',
+        element: <AddIncomePage />,
+      },
+      {
+        path: '/addExpense',
+        element: <AddExpensePage />,
+      }
     ]
   },
 ])

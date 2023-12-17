@@ -16,6 +16,7 @@ const typeDefs = gql`
         incomeAmount: Int
         incomeDate: String
         incomeFrequency: String
+        incomeAuthor: String
     }
 
     type Expense {
@@ -24,6 +25,7 @@ const typeDefs = gql`
         expenseAmount: Int
         expenseDate: String
         expenseFrequency: String
+        expenseAuthor: String
     }
 
     type Auth {

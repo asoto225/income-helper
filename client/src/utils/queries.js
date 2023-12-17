@@ -12,6 +12,7 @@ export const QUERY_USERS = gql`
                 incomeAmount
                 incomeDate
                 incomeFrequency
+                incomeAuthor
             }
             expenses {
                 _id
@@ -19,6 +20,7 @@ export const QUERY_USERS = gql`
                 expenseAmount
                 expenseDate
                 expenseFrequency
+                expenseAuthor
             }
         }
     }
@@ -36,6 +38,7 @@ export const QUERY_USER = gql`
                 incomeAmount
                 incomeDate
                 incomeFrequency
+                incomeAuthor
             }
             expenses {
                 _id
@@ -43,6 +46,7 @@ export const QUERY_USER = gql`
                 expenseAmount
                 expenseDate
                 expenseFrequency
+                expenseAuthor
             }
         }
     }
@@ -56,6 +60,7 @@ export const QUERY_INCOMES = gql`
             incomeAmount
             incomeDate
             incomeFrequency
+            incomeAuthor
         }
     }
 `;
@@ -68,6 +73,7 @@ export const QUERY_INCOME = gql`
             incomeAmount
             incomeDate
             incomeFrequency
+            incomeAuthor
         }
     }
 `;
@@ -80,6 +86,7 @@ export const QUERY_EXPENSES = gql`
             expenseAmount
             expenseDate
             expenseFrequency
+            expenseAuthor
         }
     }
 `;
@@ -92,6 +99,7 @@ export const QUERY_EXPENSE = gql`
             expenseAmount
             expenseDate
             expenseFrequency
+            expenseAuthor
         }
     }
 `;
@@ -108,6 +116,7 @@ export const QUERY_ME = gql`
                 incomeAmount
                 incomeDate
                 incomeFrequency
+                incomeAuthor
             }
             expenses {
                 _id
@@ -115,6 +124,7 @@ export const QUERY_ME = gql`
                 expenseAmount
                 expenseDate
                 expenseFrequency
+                expenseAuthor
             }
         }
     }

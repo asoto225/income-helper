@@ -22,6 +22,11 @@ const incomeSchema = new Schema({
         type: String,
         required: true,
     },
+    incomeAuthor: {
+        type: String,
+        required: true,
+        trim: true,
+    }
     // incomeNote: {
     //     type: String,
     //     required: false,
