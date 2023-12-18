@@ -6,17 +6,20 @@ import { Link } from "react-router-dom";
 import AuthService from "../utils/auth";
 
 const AddIncome = () => {
+    // define a useState hook for setting the formState object fields. Initialize the object fields with empty strings.
     const [incomeInfo, setIncomeInfo] = useState({
         incomeName: '',
         incomeAmount: '',
         incomeDate: '',
         incomeFrequency: '',
     });
+    // define a useMutation hook for executing the ADD_INCOME mutation
     const [addIncome, { error }] = useMutation(ADD_INCOME);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
+            // define an asnyc function to execute the mutation using the destructured formState object fields as arguments.
             const { data } = await addIncome({
                 variables: { 
                     incomeName: incomeInfo.incomeName,
