@@ -1,4 +1,6 @@
 import React from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_INCOME } from "../utils/mutations";
@@ -24,7 +26,7 @@ const AddIncome = () => {
                 variables: { 
                     incomeName: incomeInfo.incomeName,
                     incomeAmount: parseInt(incomeInfo.incomeAmount),
-                    incomeDate: incomeInfo.incomeDate,
+                    incomeDate: incomeInfo.incomeDate.toISOString(),
                     incomeFrequency: incomeInfo.incomeFrequency,
                     incomeAuthor: AuthService.getProfile().data.username,
                  },
@@ -36,6 +38,13 @@ const AddIncome = () => {
             console.error(e);
             window.alert("Something went wrong, please try again.");
         }
+    };
+
+    const handleDateChange = (date) => {
+        setIncomeInfo({
+            ...incomeInfo,
+            incomeDate: date,
+        });
     };
 
     const handleChange = (event) => {
@@ -64,13 +73,13 @@ const AddIncome = () => {
                     value={incomeInfo.incomeAmount}
                     onChange={handleChange}
                 />
-                {/* need to fix so that the date renders properly, maybe in the models? */}
-                <input
+                {/* used react-datepicker for date input */}
+                <DatePicker
                     name="incomeDate"
-                    type="date"
-                    placeholder="Enter income date MM/DD/YYYY"
-                    value={incomeInfo.incomeDate}
-                    onChange={handleChange}
+                    selected={incomeInfo.incomeDate}
+                    onChange={handleDateChange}
+                    placeholderText="Enter income date"
+                    dateFormat="MM/dd/yyyy"
                 />
                 <input
                     name="incomeFrequency"

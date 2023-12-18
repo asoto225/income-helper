@@ -50,7 +50,7 @@ const Dashboard = () => {
                                 Expense Amount: {expense.expenseAmount}
                             </div>
                             <div>
-                                Pay Date: {expense.expenseDate}
+                                Pay Date: {new Date(expense.expenseDate).toLocaleDateString()}
                             </div>
                             <div>
                                 Frequency: {expense.expenseFrequency}
@@ -72,7 +72,7 @@ const Dashboard = () => {
                             Income Amount: {income.incomeAmount}
                         </div>
                         <div>
-                            Pay Date: {income.incomeDate}
+                            Pay Date: {new Date(income.incomeDate).toLocaleDateString()}
                         </div>
                         <div>
                             Frequency: {income.incomeFrequency}
