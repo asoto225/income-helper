@@ -1,4 +1,6 @@
 import React from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_EXPENSE } from "../utils/mutations";
@@ -36,6 +38,13 @@ const AddExpense = () => {
         }
     };
 
+    const handleDateChange = (date) => {
+        setExpenseInfo({
+            ...expenseInfo,
+            expenseDate: date,
+        });
+    };
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setExpenseInfo({
@@ -63,12 +72,12 @@ const AddExpense = () => {
                     onChange={handleChange}
                 />
                 {/* need to fix so that the date renders properly, maybe in the models? */}
-                <input
+                <DatePicker
                     name="expenseDate"
-                    type="date"
-                    placeholder="Enter expense date MM/DD/YYYY"
-                    value={expenseInfo.expenseDate}
-                    onChange={handleChange}
+                    selected={expenseInfo.expenseDate}
+                    onChange={handleDateChange}
+                    placeholderText="Enter expense date"
+                    dateFormat="MM/dd/yyyy"
                 />
                 <input
                     name="expenseFrequency"

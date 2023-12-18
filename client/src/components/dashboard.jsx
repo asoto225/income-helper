@@ -30,9 +30,17 @@ const Dashboard = () => {
     console.log(income, 'income');
     const expense = user.expenses;
     console.log(expense, 'expense');
-
-    const totalIncome = income.reduce((total, income) => total + income.incomeAmount, 0);
-    const totalExpense = expense.reduce((total, expense) => total + expense.expenseAmount, 0);
+    
+    // calculates total income, also adjusts biweekly income to monthly income by multiplying by 2 for biweekly frequency. 
+    const totalIncome = income.reduce((total, income) => {
+        const adjustedAmount = income.incomeFrequency === "biweekly" ? income.incomeAmount * 2 : income.incomeAmount;
+        return total + adjustedAmount;
+    } , 0);
+    // calculates total expenses, also adjusts biweekly expenses to monthly expenses by multiplying by 2 for biweekly frequency.
+    const totalExpense = expense.reduce((total, expense) => {
+        const adjustedAmount = expense.expenseFrequency === "biweekly" ? expense.expenseAmount * 2 : expense.expenseAmount;
+        return total + adjustedAmount;
+    }, 0);
 
     return (
         <div>
@@ -83,19 +91,19 @@ const Dashboard = () => {
                 ))}
             </div>
             <div>
-                <h2>Total Income:</h2>
+                <h2>Total Monthly Income:</h2>
                 <div>
                     {totalIncome}
                 </div>
             </div>
             <div>
-                <h2>Total Expenses:</h2>
+                <h2>Total Monthly Expenses:</h2>
                 <div>
                     {totalExpense}
                 </div>
             </div>
             <div>
-                <h2>Net Income:</h2>
+                <h2>Monthly Net Income:</h2>
                 <div>
                     {totalIncome - totalExpense}
                 </div>
