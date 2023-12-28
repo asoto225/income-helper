@@ -25,12 +25,11 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_INCOME = gql`
-    mutation addIncome($incomeName: String!, $incomeAmount: Int!, $incomeDate: DateTime!, $incomeFrequency: String!){
-        addIncome(incomeName: $incomeName, incomeAmount: $incomeAmount, incomeDate: $incomeDate, incomeFrequency: $incomeFrequency){
+    mutation addIncome($incomeName: String!, $incomeAmount: Int!, $incomeFrequency: String!){
+        addIncome(incomeName: $incomeName, incomeAmount: $incomeAmount, incomeFrequency: $incomeFrequency){
                 _id
                 incomeName
                 incomeAmount
-                incomeDate
                 incomeFrequency
                 incomeAuthor
         }
@@ -38,14 +37,37 @@ export const ADD_INCOME = gql`
 `;
 
 export const ADD_EXPENSE = gql`
-    mutation addExpense($expenseName: String!, $expenseAmount: Int!, $expenseDate: DateTime!, $expenseFrequency: String!){
-        addExpense(expenseName: $expenseName, expenseAmount: $expenseAmount, expenseDate: $expenseDate, expenseFrequency: $expenseFrequency){
+    mutation addExpense($expenseName: String!, $expenseAmount: Int!, $expenseFrequency: String!){
+        addExpense(expenseName: $expenseName, expenseAmount: $expenseAmount, expenseFrequency: $expenseFrequency){
                 _id
                 expenseName
                 expenseAmount
-                expenseDate
                 expenseFrequency
                 expenseAuthor
+        }
+    }
+`;
+
+export const DELETE_INCOME = gql`
+    mutation deleteIncome($incomeId: ID!){
+        deleteIncome(incomeId: $incomeId){
+            _id
+            incomeName
+            incomeAmount
+            incomeFrequency
+            incomeAuthor
+        }
+    }
+`;
+
+export const DELETE_EXPENSE = gql`
+    mutation deleteExpense($expenseId: ID!){
+        deleteExpense(expenseId: $expenseId){
+            _id
+            expenseName
+            expenseAmount
+            expenseFrequency
+            expenseAuthor
         }
     }
 `;

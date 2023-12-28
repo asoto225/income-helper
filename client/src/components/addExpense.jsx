@@ -12,7 +12,7 @@ const AddExpense = () => {
     const [expenseInfo, setExpenseInfo] = useState({
         expenseName: '',
         expenseAmount: '',
-        expenseDate: '',
+        // expenseDate: '',
         expenseFrequency: '',
     });
     const [addExpense, { error }] = useMutation(ADD_EXPENSE);
@@ -24,13 +24,14 @@ const AddExpense = () => {
                 variables: {
                     expenseName: expenseInfo.expenseName,
                     expenseAmount: parseInt(expenseInfo.expenseAmount),
-                    expenseDate: expenseInfo.expenseDate,
+                    // expenseDate: expenseInfo.expenseDate,
                     expenseFrequency: expenseInfo.expenseFrequency,
                     expenseAuthor: AuthService.getProfile().data.username,
                  },
             });
             console.log("expense added successfully:",data);
             window.alert("expense added successfully");
+            // delete expenseDate if no longer needed once finished. 
             setExpenseInfo({ expenseName: '', expenseAmount: '', expenseDate: '', expenseFrequency: '' });
         } catch (e) {
             console.error(e);
@@ -72,20 +73,23 @@ const AddExpense = () => {
                     onChange={handleChange}
                 />
                 {/* need to fix so that the date renders properly, maybe in the models? */}
-                <DatePicker
+                {/* <DatePicker
                     name="expenseDate"
                     selected={expenseInfo.expenseDate}
                     onChange={handleDateChange}
                     placeholderText="Enter expense date"
                     dateFormat="MM/dd/yyyy"
-                />
-                <input
+                /> */}
+                <select
                     name="expenseFrequency"
-                    type="text"
-                    placeholder="Enter expense frequency"
                     value={expenseInfo.expenseFrequency}
                     onChange={handleChange}
-                />
+                >
+                    <option value="">Select expense frequency</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Biweekly">Biweekly</option>
+                    <option value="Weekly">Weekly</option>
+                </select>
                 <button type="submit">Add Expense</button>
             </form>
             {error && <div>Something went wrong...</div>}

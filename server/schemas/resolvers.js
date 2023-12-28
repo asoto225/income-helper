@@ -14,14 +14,14 @@ const resolvers = {
         },
         incomes: async (parent, { username }) => {
             const params = username ? { username } : {};
-            return Income.find(params).sort({ incomeDate: -1 });
+            return Income.find(params).sort({ incomeAmount: -1 });
         },
         expense: async (parent, { expenseId }) => {
             return Expense.findOne({ _id: expenseId });
         },
         expenses: async (parent, { username }) => {
             const params = username ? { username } : {};
-            return Expense.find(params).sort({ expenseDate: -1 });
+            return Expense.find(params).sort({ expenseAmount: -1 });
         },
         me: async (parent, args, context) => {
             if (context.user) {
@@ -55,12 +55,12 @@ const resolvers = {
             return { token, user };
         },
         // Income mutations
-        addIncome: async (parent , { incomeName, incomeAmount, incomeDate, incomeFrequency }, context) => {
+        addIncome: async (parent , { incomeName, incomeAmount, incomeFrequency }, context) => {
             if (context.user) {
                 const income = await Income.create({
                     incomeName,
                     incomeAmount,
-                    incomeDate,
+                    // incomeDate,
                     incomeFrequency,
                     incomeAuthor: context.user.username,
                 });
@@ -75,13 +75,28 @@ const resolvers = {
                 };
             };
         },
+        deleteIncome: async (parent, { incomeId }, context) => {
+            if (context.user) {
+                const income = await Income.findOneAndDelete({
+                    _id: incomeId,
+                    incomeAuthor: context.user.username,
+                });
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { incomes: incomeId } },
+                    { new: true }
+                );
+                console.log('deleted income')
+                return income;
+            }
+        },
         // Expenses mutations
-        addExpense: async (parent , { expenseName, expenseAmount, expenseDate, expenseFrequency }, context) => {
+        addExpense: async (parent , { expenseName, expenseAmount, expenseFrequency }, context) => {
             if (context.user) {
                 const expense = await Expense.create({
                     expenseName,
                     expenseAmount,
-                    expenseDate,
+                    // expenseDate,
                     expenseFrequency,
                     expenseAuthor: context.user.username,
                 });
@@ -94,6 +109,21 @@ const resolvers = {
                 return {
                     expenses: expense,
                 };
+            }
+        },
+        deleteExpense: async (parent, { expenseId }, context) => {
+            if (context.user) {
+                const expense = await Expense.findOneAndDelete({
+                    _id: expenseId,
+                    expenseAuthor: context.user.username,
+                });
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { expenses: expenseId } },
+                    { new: true }
+                );
+                console.log('deleted expense')
+                return expense;
             }
         },
     },

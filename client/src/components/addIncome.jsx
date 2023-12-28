@@ -12,7 +12,7 @@ const AddIncome = () => {
     const [incomeInfo, setIncomeInfo] = useState({
         incomeName: '',
         incomeAmount: '',
-        incomeDate: '',
+        // incomeDate: '',
         incomeFrequency: '',
     });
     // define a useMutation hook for executing the ADD_INCOME mutation
@@ -26,7 +26,7 @@ const AddIncome = () => {
                 variables: { 
                     incomeName: incomeInfo.incomeName,
                     incomeAmount: parseInt(incomeInfo.incomeAmount),
-                    incomeDate: incomeInfo.incomeDate.toISOString(),
+                    // incomeDate: incomeInfo.incomeDate.toISOString(),
                     incomeFrequency: incomeInfo.incomeFrequency,
                     incomeAuthor: AuthService.getProfile().data.username,
                  },
@@ -74,20 +74,23 @@ const AddIncome = () => {
                     onChange={handleChange}
                 />
                 {/* used react-datepicker for date input */}
-                <DatePicker
+                {/* <DatePicker
                     name="incomeDate"
                     selected={incomeInfo.incomeDate}
                     onChange={handleDateChange}
                     placeholderText="Enter income date"
                     dateFormat="MM/dd/yyyy"
-                />
-                <input
+                /> */}
+                <select
                     name="incomeFrequency"
-                    type="text"
-                    placeholder="Enter income frequency"
                     value={incomeInfo.incomeFrequency}
                     onChange={handleChange}
-                />
+                >
+                    <option value="">Select income frequency</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Biweekly">Biweekly</option>
+                    <option value="Weekly">Weekly</option>
+                </select>
                 <button type="submit">Add Income</button>
             </form>
             {error && <div>Something went wrong...</div>}

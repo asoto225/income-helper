@@ -14,7 +14,6 @@ const typeDefs = gql`
         _id: ID
         incomeName: String
         incomeAmount: Int
-        incomeDate: DateTime
         incomeFrequency: String
         incomeAuthor: String
     }
@@ -23,7 +22,6 @@ const typeDefs = gql`
         _id: ID
         expenseName: String
         expenseAmount: Int
-        expenseDate: DateTime
         expenseFrequency: String
         expenseAuthor: String
     }
@@ -46,8 +44,10 @@ const typeDefs = gql`
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
-        addIncome(incomeName: String!, incomeAmount: Int!, incomeDate: DateTime!, incomeFrequency: String!): Income
-        addExpense(expenseName: String!, expenseAmount: Int!, expenseDate: DateTime!, expenseFrequency: String!): Expense
+        addIncome(incomeName: String!, incomeAmount: Int!, incomeFrequency: String!): Income
+        deleteIncome(incomeId: ID!): Income
+        addExpense(expenseName: String!, expenseAmount: Int!, expenseFrequency: String!): Expense
+        deleteExpense(expenseId: ID!): Expense
     }
 `;
 

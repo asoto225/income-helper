@@ -1,10 +1,18 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
+import React, { useEffect } from "react";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
+import { DELETE_INCOME, DELETE_EXPENSE } from "../utils/mutations";
 import AuthService from "../utils/auth";
 
 const Dashboard = () => {
-    const { loading, error, data } = useQuery(QUERY_ME);
+    const { loading, error, data, refetch } = useQuery(QUERY_ME);
+    const [deleteIncome] = useMutation(DELETE_INCOME);
+    const [deleteExpense] = useMutation(DELETE_EXPENSE);
+
+    useEffect(() => {
+        refetch();
+    }, []);
+
     const logout = () => {
         AuthService.logout();
     };
@@ -31,43 +39,55 @@ const Dashboard = () => {
     const expense = user.expenses;
     console.log(expense, 'expense');
     
-    // calculates total income, also adjusts biweekly income to monthly income by multiplying by 2 for biweekly frequency. 
+    // calculates total income, also adjusts biweekly income to monthly income by multiplying by 2 for biweekly frequency, multiplies by 4 for weekly. 
     const totalIncome = income.reduce((total, income) => {
-        const adjustedAmount = income.incomeFrequency === "biweekly" ? income.incomeAmount * 2 : income.incomeAmount;
+        const adjustedAmount = 
+        income.incomeFrequency === "Biweekly" ? income.incomeAmount * 2 :
+        income.incomeFrequency === "Weekly" ? income.incomeAmount * 4 : 
+        income.incomeAmount;
         return total + adjustedAmount;
     } , 0);
-    // calculates total expenses, also adjusts biweekly expenses to monthly expenses by multiplying by 2 for biweekly frequency.
+    // calculates total expenses, also adjusts biweekly expenses to monthly expenses by multiplying by 2 for biweekly frequency, multiplies by 4 for weekly.
     const totalExpense = expense.reduce((total, expense) => {
-        const adjustedAmount = expense.expenseFrequency === "biweekly" ? expense.expenseAmount * 2 : expense.expenseAmount;
+        const adjustedAmount = 
+        expense.expenseFrequency === "Biweekly" ? expense.expenseAmount * 2 : 
+        expense.expenseFrequency === "Weekly" ? expense.expenseAmount * 4 :
+        expense.expenseAmount;
         return total + adjustedAmount;
     }, 0);
+
+    //delete income function
+    const handleDeleteIncome = async (incomeId) => {
+        try {
+            await deleteIncome({
+                variables: { incomeId },
+            });
+            window.alert("Income deleted successfully");
+            refetch();
+        } catch (e) {
+            console.error(e);
+            window.alert("Something went wrong, please try again.");
+        }        
+    };
+
+    //delete expense function
+    const handleDeleteExpense = async (expenseId) => {
+        try {
+            await deleteExpense({
+                variables: { expenseId },
+            });
+            window.alert("Expense deleted successfully");
+            refetch();
+        } catch (e) {
+            console.error(e);
+            window.alert("Something went wrong, please try again.");
+        }        
+    };
 
     return (
         <div>
             <h1>Welcome, {username} </h1>
             <button onClick={logout}>Logout</button>
-            {/* Renders expense data by mapping through the expenses attached to the user. */}
-            <div>
-                <h2>Expenses:</h2> {expense.map((expense) => (
-                    <div key={expense._id}>
-                        <div>
-                            <div>
-                                Name: {expense.expenseName}
-                            </div>
-                            <div>
-                                Expense Amount: {expense.expenseAmount}
-                            </div>
-                            <div>
-                                Pay Date: {new Date(expense.expenseDate).toLocaleDateString()}
-                            </div>
-                            <div>
-                                Frequency: {expense.expenseFrequency}
-                            </div>
-                        </div>
-                        <br />
-                    </div>
-                ))}
-            </div>
             <div>
                 {/* Renders income data by mapping through income attached to the user. */}
                 <h2>Income:</h2> {income.map((income) => (
@@ -80,14 +100,32 @@ const Dashboard = () => {
                             Income Amount: {income.incomeAmount}
                         </div>
                         <div>
-                            Pay Date: {new Date(income.incomeDate).toLocaleDateString()}
-                        </div>
-                        <div>
                             Frequency: {income.incomeFrequency}
+                        </div>
+                        <button onClick={() => handleDeleteIncome(income._id)}>Delete</button>
+                    </div>
+                    <br />
+                </div>
+                ))}
+            </div>
+            <div>
+                {/* Renders expense data by mapping through the expenses attached to the user. */}
+                <h2>Expenses:</h2> {expense.map((expense) => (
+                    <div key={expense._id}>
+                        <div>
+                            <div>
+                                Name: {expense.expenseName}
+                            </div>
+                            <div>
+                                Expense Amount: {expense.expenseAmount}
+                            </div>
+                            <div>
+                                Frequency: {expense.expenseFrequency}
+                            </div>  
+                            <button onClick={() => handleDeleteExpense(expense._id)}>Delete</button>           
                         </div>
                         <br />
                     </div>
-                </div>
                 ))}
             </div>
             <div>

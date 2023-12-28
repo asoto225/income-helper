@@ -8,16 +8,17 @@ const incomeSchema = new Schema({
         trim: true,
         min: 1,
         max: 280,
+        unique: true,
     },
     incomeAmount: {
         type: Number,
         required: true,
         trim: true,
     },
-    incomeDate: {
-        type: Date,
-        required: true,
-    },
+    // incomeDate: {
+    //     type: Date,
+    //     required: true,
+    // },
     incomeFrequency: {
         type: String,
         required: true,

@@ -10,7 +10,6 @@ export const QUERY_USERS = gql`
                 _id
                 incomeName
                 incomeAmount
-                incomeDate
                 incomeFrequency
                 incomeAuthor
             }
@@ -18,7 +17,6 @@ export const QUERY_USERS = gql`
                 _id
                 expenseName
                 expenseAmount
-                expenseDate
                 expenseFrequency
                 expenseAuthor
             }
@@ -36,7 +34,6 @@ export const QUERY_USER = gql`
                 _id
                 incomeName
                 incomeAmount
-                incomeDate
                 incomeFrequency
                 incomeAuthor
             }
@@ -44,7 +41,6 @@ export const QUERY_USER = gql`
                 _id
                 expenseName
                 expenseAmount
-                expenseDate
                 expenseFrequency
                 expenseAuthor
             }
@@ -58,7 +54,6 @@ export const QUERY_INCOMES = gql`
             _id
             incomeName
             incomeAmount
-            incomeDate
             incomeFrequency
             incomeAuthor
         }
@@ -71,7 +66,6 @@ export const QUERY_INCOME = gql`
             _id
             incomeName
             incomeAmount
-            incomeDate
             incomeFrequency
             incomeAuthor
         }
@@ -84,7 +78,6 @@ export const QUERY_EXPENSES = gql`
             _id
             expenseName
             expenseAmount
-            expenseDate
             expenseFrequency
             expenseAuthor
         }
@@ -97,7 +90,6 @@ export const QUERY_EXPENSE = gql`
             _id
             expenseName
             expenseAmount
-            expenseDate
             expenseFrequency
             expenseAuthor
         }
@@ -114,7 +106,6 @@ export const QUERY_ME = gql`
                 _id
                 incomeName
                 incomeAmount
-                incomeDate
                 incomeFrequency
                 incomeAuthor
             }
@@ -122,7 +113,6 @@ export const QUERY_ME = gql`
                 _id
                 expenseName
                 expenseAmount
-                expenseDate
                 expenseFrequency
                 expenseAuthor
             }
