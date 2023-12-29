@@ -1,20 +1,30 @@
 import React from "react";
-import Dashboard from "../components/Dashboard";
+import Dashboard from "../components/dashboard";
 import { Link } from "react-router-dom";
+import AuthService from "../utils/auth";
+import Nav from "../components/nav";
 
-export default function DashboardPage() {
+const DashboardPage = () => {
+    const isLoggedIn = AuthService.loggedIn();
     return (
         <div>
-            <h1>Dashboard Page</h1>
-            <div>
-                <Dashboard />
+            {isLoggedIn ? (
+                <div>
+                    <div>
+                        <Nav />
+                    </div>
+                    <h1>Dashboard Page</h1>
+                    <div>
+                        <Dashboard />
+                    </div>
+                </div>
+            ) : <div>
+                <h2>Please log in to view this page.</h2> <br />
+                <Link to="/">Login</Link>
             </div>
-            <div>
-                <Link to="/addExpense">Add Expense</Link>
-            </div>
-            <div>
-                <Link to="/addIncome">Add Income</Link>
-            </div>
+            }
         </div>
-    );
+    )
 };
+
+export default DashboardPage;
