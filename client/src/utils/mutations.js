@@ -71,3 +71,27 @@ export const DELETE_EXPENSE = gql`
         }
     }
 `;
+
+export const EDIT_INCOME = gql`
+    mutation editIncome($incomeId: ID!, $incomeName: String!, $incomeAmount: Int!, $incomeFrequency: String!){
+        editIncome(incomeId: $incomeId, incomeName: $incomeName, incomeAmount: $incomeAmount, incomeFrequency: $incomeFrequency){
+            _id
+            incomeName
+            incomeAmount
+            incomeFrequency
+            incomeAuthor
+        }
+    }
+`;
+
+export const EDIT_EXPENSE = gql`
+    mutation editExpense($expenseId: ID!, $expenseName: String!, $expenseAmount: Int!, $expenseFrequency: String!){
+        editExpense(expenseId: $expenseId, expenseName: $expenseName, expenseAmount: $expenseAmount, expenseFrequency: $expenseFrequency){
+            _id
+            expenseName
+            expenseAmount
+            expenseFrequency
+            expenseAuthor
+        }
+    }
+`;

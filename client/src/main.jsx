@@ -9,6 +9,8 @@ import Dashboard from './pages/Dashboard.jsx'
 import CreateAccount from './pages/CreateAccount.jsx'
 import AddIncomePage from './pages/AddIncomePage.jsx'
 import AddExpensePage from './pages/AddExpensePage.jsx'
+import EditIncomePage from './pages/EditIncomePage.jsx'
+import EditExpensePage from './pages/EditExpensePage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
       {
         path: '/addExpense',
         element: <AddExpensePage />,
+      },
+      {
+        path: '/editIncomePage/:id',
+        element: <EditIncomePage />,
+      },
+      {
+        path: '/editExpensePage/',
+        element: <EditExpensePage/>
       }
     ]
   },

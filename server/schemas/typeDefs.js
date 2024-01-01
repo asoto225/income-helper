@@ -48,6 +48,8 @@ const typeDefs = gql`
         deleteIncome(incomeId: ID!): Income
         addExpense(expenseName: String!, expenseAmount: Int!, expenseFrequency: String!): Expense
         deleteExpense(expenseId: ID!): Expense
+        editIncome(incomeId: ID!, incomeName: String!, incomeAmount: Int!, incomeFrequency: String!): Income
+        editExpense(expenseId: ID!, expenseName: String!, expenseAmount: Int!, expenseFrequency: String!): Expense
     }
 `;
 

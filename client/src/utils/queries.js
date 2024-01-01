@@ -61,8 +61,8 @@ export const QUERY_INCOMES = gql`
 `;
 
 export const QUERY_INCOME = gql`
-    query income($username: String) {
-        income(username: $username) {
+    query income($_id: ID!) {
+        income(_id: $_id) {
             _id
             incomeName
             incomeAmount

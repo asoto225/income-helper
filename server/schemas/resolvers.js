@@ -9,15 +9,15 @@ const resolvers = {
         user: async (parent, { username }) => {
             return User.findOne({ username }).populate('incomes').populate('expenses');
         },
-        income: async (parent, { incomeId }) => {
-            return Income.findOne({ _id: incomeId });
+        income: async (parent, { _id }) => {
+            return Income.findOne({ _id: _id });
         },
         incomes: async (parent, { username }) => {
             const params = username ? { username } : {};
             return Income.find(params).sort({ incomeAmount: -1 });
         },
-        expense: async (parent, { expenseId }) => {
-            return Expense.findOne({ _id: expenseId });
+        expense: async (parent, { _id }) => {
+            return Expense.findOne({ _id: _id });
         },
         expenses: async (parent, { username }) => {
             const params = username ? { username } : {};
@@ -90,6 +90,17 @@ const resolvers = {
                 return income;
             }
         },
+        editIncome: async (parent, { incomeId, incomeName, incomeAmount, incomeFrequency }, context) => {
+            if (context.user) {
+                const income = await Income.findOneAndUpdate(
+                    { _id: incomeId },
+                    { incomeName, incomeAmount, incomeFrequency },
+                    { new: true }
+                );
+                console.log('edited income')
+                return income;
+            }
+        },
         // Expenses mutations
         addExpense: async (parent , { expenseName, expenseAmount, expenseFrequency }, context) => {
             if (context.user) {
@@ -123,6 +134,17 @@ const resolvers = {
                     { new: true }
                 );
                 console.log('deleted expense')
+                return expense;
+            }
+        },
+        editExpense: async (parent, { expenseId, expenseName, expenseAmount, expenseFrequency }, context) => {
+            if (context.user) {
+                const expense = await Expense.findOneAndUpdate(
+                    { _id: expenseId },
+                    { expenseName, expenseAmount, expenseFrequency },
+                    { new: true }
+                );
+                console.log('edited expense')
                 return expense;
             }
         },
