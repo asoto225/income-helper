@@ -29,7 +29,6 @@ const EditExpense = () => {
                 frequency: expenseFrequency,
             });
         }
-        console.log("fetched data:", data);
     }, [data]);
 
     const handleExpenseEdit = () => {

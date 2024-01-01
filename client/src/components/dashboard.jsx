@@ -3,7 +3,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import { DELETE_INCOME, DELETE_EXPENSE, EDIT_EXPENSE, EDIT_INCOME } from "../utils/mutations";
 import AuthService from "../utils/auth";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
     const { loading, error, data, refetch } = useQuery(QUERY_ME);
@@ -78,68 +78,70 @@ const Dashboard = () => {
         <div>
             <h1 className="welcomeMessage">Welcome, {username} </h1>
             <button onClick={logout}>Logout</button>
-            <div className="expensesAndIncome">
-                <div>
-                    {/* Renders income data by mapping through income attached to the user. */}
-                    <h2 className="incomeTitle">Income:</h2>
-                    {income.map((income) => (
-                        <div key={income._id} className="incomeData">
-                            <div>
+            <div className="displayData">
+                <div className="expensesAndIncome">
+                    <div className="expensesAndIncomeData">
+                        {/* Renders income data by mapping through income attached to the user. */}
+                        <h2 className="incomeTitle">Income:</h2>
+                        {income.map((income) => (
+                            <div key={income._id} className="incomeData">
                                 <div>
-                                    Name: {income.incomeName}
+                                    <div>
+                                        Name: {income.incomeName}
+                                    </div>
+                                    <div>
+                                        Income Amount: {income.incomeAmount}
+                                    </div>
+                                    <div>
+                                        Frequency: {income.incomeFrequency}
+                                    </div>
+                                    <button className="btn" onClick={() => handleDeleteIncome(income._id)}>Delete</button>
+                                    <Link className="btn" to={`/editIncomePage/${income._id}`}>Edit</Link>
                                 </div>
-                                <div>
-                                    Income Amount: {income.incomeAmount}
-                                </div>
-                                <div>
-                                    Frequency: {income.incomeFrequency}
-                                </div>
-                                <button onClick={() => handleDeleteIncome(income._id)}>Delete</button>
-                                <Link to={`/editIncomePage/${income._id}`}>Edit</Link>                            
                             </div>
-                        </div>
-                    ))}
-                </div>
-                <div>
-                    {/* Renders expense data by mapping through the expenses attached to the user. */}
-                    <h2 className="expenseTitle">Expenses:</h2>
-                    {expense.map((expense) => (
-                        <div key={expense._id} className="expenseData">
-                            <div>
-                                <div>
-                                    Name: {expense.expenseName}
-                                </div>
-                                <div>
-                                    Income Amount: {expense.expenseAmount}
-                                </div>
-                                <div>
-                                    Frequency: {expense.expenseFrequency}
-                                </div>
-                                <button onClick={() => handleDeleteExpense(expense._id)}>Delete</button>
-                                <Link
-                                 to={`/editExpensePage/${expense._id}`}>Edit</Link>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <div className="totals">
-                <div className="totalsData">
-                    <h2>Total Monthly Income:</h2>
+                        ))}
+                    </div>
                     <div>
-                        {totalIncome}
+                        {/* Renders expense data by mapping through the expenses attached to the user. */}
+                        <h2 className="expenseTitle">Expenses:</h2>
+                        {expense.map((expense) => (
+                            <div key={expense._id} className="expenseData">
+                                <div>
+                                    <div>
+                                        Name: {expense.expenseName}
+                                    </div>
+                                    <div>
+                                        Expense Amount: {expense.expenseAmount}
+                                    </div>
+                                    <div>
+                                        Frequency: {expense.expenseFrequency}
+                                    </div>
+                                    <button className="btn" onClick={() => handleDeleteExpense(expense._id)}>Delete</button>
+                                    <Link className="btn"
+                                        to={`/editExpensePage/${expense._id}`}>Edit</Link>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-                <div className="totalsData">
-                    <h2>Total Monthly Expenses:</h2>
-                    <div>
-                        {totalExpense}
+                <div className="totals">
+                    <div className="totalsData">
+                        <h2>Total Monthly Income:</h2>
+                        <div>
+                            {totalIncome}
+                        </div>
                     </div>
-                </div>
-                <div className="totalsData">
-                    <h2>Monthly Net Income:</h2>
-                    <div>
-                        {totalIncome - totalExpense}
+                    <div className="totalsData">
+                        <h2>Total Monthly Expenses:</h2>
+                        <div>
+                            {totalExpense}
+                        </div>
+                    </div>
+                    <div className="totalsData">
+                        <h2>Monthly Net Income:</h2>
+                        <div>
+                            {totalIncome - totalExpense}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -21,13 +21,32 @@ body {
   height: 100%;
 }
 
+.welcomeMessage {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
 
-.expensesAndIncome {
-  /* background-color: darkcyan; */
+.displayData {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  align-items: center;
+  justify-content: space-around;
 }
+
+.expensesAndIncome {
+  display: contents;
+}
+
+
+/* .expensesAndIncome {
+  display: flex;
+  flex-direction: row;
+}
+
+.expensesAndIncomeData {
+  margin-right: 40px;
+}*/
 
 .incomeData {
   border: 1px solid green;
@@ -47,12 +66,6 @@ body {
   line-height: 2.1rem;
 }
 
-.welcomeMessage {
-  display: flex;
-  justify-content: center;
-  margin: 15px 0;
-}
-
 .incomeTitle{
   color: green;
 }
@@ -61,11 +74,6 @@ body {
   color: red;
 } 
 
-.totals {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
 
 .totalsData {
   border: 1px solid white;
@@ -105,7 +113,7 @@ body {
   padding: 0.5rem 1rem;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0px 5px 5px #ccc;
+  box-shadow: 0px 5px 5px black;
 }
 
 .modal-item .btn {

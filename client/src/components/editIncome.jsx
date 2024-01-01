@@ -21,7 +21,6 @@ const EditIncome = () => {
     const [editIncome, { error }] = useMutation(EDIT_INCOME);
 
     useEffect(() => {
-        console.log("data:", data)
         if (data && data.income) {
             const { incomeName, incomeAmount, incomeFrequency } = data.income;
             setIncomeData({
@@ -30,7 +29,6 @@ const EditIncome = () => {
                 frequency: incomeFrequency,
             });
         }
-        console.log("fetched data:", data);
     }, [data]);
 
     const handleIncomeEdit = () => {

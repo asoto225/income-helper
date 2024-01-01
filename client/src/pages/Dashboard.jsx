@@ -6,14 +6,6 @@ import Nav from "../components/nav";
 
 const DashboardPage = () => {
     const isLoggedIn = AuthService.loggedIn();
-    // const [modalOpen, setModalOpen] = useState(false);
-    const [itemToEdit, setItemToEdit] = useState(null);
-
-    const handleEdit = (id) => {
-        setItemToEdit(id);
-
-        setModalOpen(true);
-    }
 
 
     return (
@@ -24,19 +16,9 @@ const DashboardPage = () => {
                         <Nav />
                     </div>
                     {/* <h1>Dashboard Page</h1> */}
-                    <div className="mainContent">
+                    <div>
                         <Dashboard />
                     </div>
-                    {/* <button className="btn" onClick={() => { setModalOpen(true) }}>Add</button>
-                    <div>
-                        {modalOpen && (
-                            <Modal
-                                closeModal={() => {
-                                    setModalOpen(false);
-                                }}
-                            />
-                        )}
-                    </div> */}
                 </div>
             ) : (
                 <div>

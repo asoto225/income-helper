@@ -6,7 +6,6 @@ import EditIncome from "../components/editIncome";
 
 const EditIncomePage = () => {
     const isLoggedIn = AuthService.loggedIn();
-    const { id } = useParams();
     return (
         <div>
             {isLoggedIn ? (
