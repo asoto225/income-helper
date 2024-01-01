@@ -5,7 +5,7 @@ import { DELETE_INCOME, DELETE_EXPENSE, EDIT_EXPENSE, EDIT_INCOME } from "../uti
 import AuthService from "../utils/auth";
 import { Link } from "react-router-dom"; 
 
-const Dashboard = (onSubmit) => {
+const Dashboard = () => {
     const { loading, error, data, refetch } = useQuery(QUERY_ME);
     const [deleteIncome] = useMutation(DELETE_INCOME);
     const [deleteExpense] = useMutation(DELETE_EXPENSE);
@@ -26,11 +26,8 @@ const Dashboard = (onSubmit) => {
 
     // finding the username, income, and expense data from the user object and console logging it.
     const username = user.username;
-    console.log(username);
     const income = user.incomes;
-    console.log(income, 'income');
     const expense = user.expenses;
-    console.log(expense, 'expense');
 
     // calculates total income, also adjusts biweekly income to monthly income by multiplying by 2 for biweekly frequency, multiplies by 4 for weekly. 
     const totalIncome = income.reduce((total, income) => {
@@ -120,7 +117,7 @@ const Dashboard = (onSubmit) => {
                                 </div>
                                 <button onClick={() => handleDeleteExpense(expense._id)}>Delete</button>
                                 <Link
-                                 to="/editExpensePage">Edit</Link>
+                                 to={`/editExpensePage/${expense._id}`}>Edit</Link>
                             </div>
                         </div>
                     ))}

@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         element: <EditIncomePage />,
       },
       {
-        path: '/editExpensePage/',
+        path: '/editExpensePage/:id',
         element: <EditExpensePage/>
       }
     ]

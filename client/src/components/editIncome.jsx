@@ -81,9 +81,9 @@ const EditIncome = () => {
                     value={incomeData.frequency}
                     onChange={(e) => setIncomeData({ ...incomeData, frequency: e.target.value })}
                 >
-                    <option value="weekly">Weekly</option>
-                    <option value="biweekly">Biweekly</option>
-                    <option value="monthly">Monthly</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Biweekly">Biweekly</option>
+                    <option value="Monthly">Monthly</option>
                 </select>
             </label>
             <button onClick={handleIncomeEdit}>Save Changes</button>

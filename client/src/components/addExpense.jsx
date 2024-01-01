@@ -1,10 +1,8 @@
 import React from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_EXPENSE } from "../utils/mutations";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../utils/auth";
 import '../App.css'
 
@@ -12,9 +10,11 @@ const AddExpense = () => {
     const [expenseInfo, setExpenseInfo] = useState({
         expenseName: '',
         expenseAmount: '',
-        // expenseDate: '',
         expenseFrequency: '',
     });
+
+    const navigate = useNavigate();
+
     const [addExpense, { error }] = useMutation(ADD_EXPENSE);
 
     const handleFormSubmit = async (event) => {
@@ -32,7 +32,8 @@ const AddExpense = () => {
             console.log("expense added successfully:",data);
             window.alert("expense added successfully");
             // delete expenseDate if no longer needed once finished. 
-            setExpenseInfo({ expenseName: '', expenseAmount: '', expenseDate: '', expenseFrequency: '' });
+            setExpenseInfo({ expenseName: '', expenseAmount: '', expenseFrequency: '' });
+            navigate("/dashboard")
         } catch (e) {
             console.error(e);
             window.alert("Something went wrong, please try again.");

@@ -1,10 +1,9 @@
 import React from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_INCOME } from "../utils/mutations";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../utils/auth";
 
 const AddIncome = () => {
@@ -12,9 +11,9 @@ const AddIncome = () => {
     const [incomeInfo, setIncomeInfo] = useState({
         incomeName: '',
         incomeAmount: '',
-        // incomeDate: '',
         incomeFrequency: '',
     });
+    const navigate = useNavigate();
     // define a useMutation hook for executing the ADD_INCOME mutation
     const [addIncome, { error }] = useMutation(ADD_INCOME);
 
@@ -26,25 +25,19 @@ const AddIncome = () => {
                 variables: { 
                     incomeName: incomeInfo.incomeName,
                     incomeAmount: parseInt(incomeInfo.incomeAmount),
-                    // incomeDate: incomeInfo.incomeDate.toISOString(),
                     incomeFrequency: incomeInfo.incomeFrequency,
                     incomeAuthor: AuthService.getProfile().data.username,
                  },
             });
             console.log("income added successfully:",data);
             window.alert("Income added successfully");
-            setIncomeInfo({ incomeName: '', incomeAmount: '', incomeDate: '', incomeFrequency: '' });
+            setIncomeInfo({ incomeName: '', incomeAmount: '', incomeFrequency: '' });
+            // navigate to dashboard
+            navigate("/dashboard")
         } catch (e) {
             console.error(e);
             window.alert("Something went wrong, please try again.");
         }
-    };
-
-    const handleDateChange = (date) => {
-        setIncomeInfo({
-            ...incomeInfo,
-            incomeDate: date,
-        });
     };
 
     const handleChange = (event) => {
@@ -73,14 +66,6 @@ const AddIncome = () => {
                     value={incomeInfo.incomeAmount}
                     onChange={handleChange}
                 />
-                {/* used react-datepicker for date input */}
-                {/* <DatePicker
-                    name="incomeDate"
-                    selected={incomeInfo.incomeDate}
-                    onChange={handleDateChange}
-                    placeholderText="Enter income date"
-                    dateFormat="MM/dd/yyyy"
-                /> */}
                 <select
                     name="incomeFrequency"
                     value={incomeInfo.incomeFrequency}

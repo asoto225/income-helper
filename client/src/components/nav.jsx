@@ -16,17 +16,17 @@ const AddNav = () => {
             <div className="collapse navbar-collapse">
                 <ul className="navbar-nav ms-auto">
                     <li className="nav-item">
-                        <NavLink to="/dashboard" className="nav-link" activeClassName="active-link">
+                        <NavLink to="/dashboard" className="nav-link">
                             Home
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink to="/addIncome" className="nav-link" activeClassName="active-link">
+                        <NavLink to="/addIncome" className="nav-link">
                             Add Income
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink to="/addExpense" className="nav-link" activeClassName="active-link">
+                        <NavLink to="/addExpense" className="nav-link">
                             Add Expense
                         </NavLink>
                     </li>

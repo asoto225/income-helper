@@ -85,8 +85,8 @@ export const QUERY_EXPENSES = gql`
 `;
 
 export const QUERY_EXPENSE = gql`
-    query expense($username: String) {
-        expense(username: $username) {
+    query expense($_id: ID!) {
+        expense(_id: $_id) {
             _id
             expenseName
             expenseAmount
