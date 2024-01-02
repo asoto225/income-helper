@@ -77,7 +77,6 @@ const Dashboard = () => {
     return (
         <div>
             <h1 className="welcomeMessage">Welcome, {username} </h1>
-            <button onClick={logout}>Logout</button>
             <div className="displayData">
                 <div className="expensesAndIncome">
                     <div className="expensesAndIncomeData">
@@ -95,13 +94,13 @@ const Dashboard = () => {
                                     <div>
                                         Frequency: {income.incomeFrequency}
                                     </div>
-                                    <button className="btn" onClick={() => handleDeleteIncome(income._id)}>Delete</button>
-                                    <Link className="btn" to={`/editIncomePage/${income._id}`}>Edit</Link>
+                                    <button className="btn delete" onClick={() => handleDeleteIncome(income._id)}>Delete</button>
+                                    <Link className="btn edit" to={`/editIncomePage/${income._id}`}>Edit</Link>
                                 </div>
                             </div>
                         ))}
                     </div>
-                    <div>
+                    <div className="expensesAndIncomeData">
                         {/* Renders expense data by mapping through the expenses attached to the user. */}
                         <h2 className="expenseTitle">Expenses:</h2>
                         {expense.map((expense) => (
@@ -116,8 +115,8 @@ const Dashboard = () => {
                                     <div>
                                         Frequency: {expense.expenseFrequency}
                                     </div>
-                                    <button className="btn" onClick={() => handleDeleteExpense(expense._id)}>Delete</button>
-                                    <Link className="btn"
+                                    <button className="btn delete" onClick={() => handleDeleteExpense(expense._id)}>Delete</button>
+                                    <Link className="btn edit"
                                         to={`/editExpensePage/${expense._id}`}>Edit</Link>
                                 </div>
                             </div>

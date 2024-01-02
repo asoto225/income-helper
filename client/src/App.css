@@ -2,8 +2,9 @@ body {
   height: 100%;
   width: 100%;
   background-color: #282c34;
-  color: white;
+  color: #fff;
   padding: 15px;
+  font-family: Arial, Helvetica, sans-serif ;
 }
 
 .nav-item {
@@ -11,8 +12,9 @@ body {
   align-items: center;
 }
 
-.nav-link{
+.nav-link {
   white-space: nowrap;
+  padding-right: 5px;
 }
 
 .nav-link::before {
@@ -30,50 +32,37 @@ body {
 .displayData {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  margin-top: 15px;
 }
 
 .expensesAndIncome {
   display: contents;
 }
 
-
-/* .expensesAndIncome {
-  display: flex;
-  flex-direction: row;
+.expensesAndIncomeData {
+  text-transform: capitalize;
 }
 
-.expensesAndIncomeData {
-  margin-right: 40px;
-}*/
-
 .incomeData {
-  border: 1px solid green;
+  border: 1px solid;
   border-radius: 5px;
   padding: 15px;
   margin: 15px 0;
   font-size: 1.2rem;
   line-height: 2.1rem;
+  box-shadow: 0 5px 10px black;
 }
 
 .expenseData {
-  border: 1px solid red;
+  border: 1px solid;
   border-radius: 5px;
   padding: 15px;
   margin: 15px 0;
   font-size: 1.2rem;
   line-height: 2.1rem;
+  box-shadow: 0 5px 10px black;
 }
-
-.incomeTitle{
-  color: green;
-}
-
-.expenseTitle{
-  color: red;
-} 
-
 
 .totalsData {
   border: 1px solid white;
@@ -82,9 +71,10 @@ body {
   margin: 15px 0;
   font-size: 1.2rem;
   line-height: 2.1rem;
+  box-shadow: 0 5px 10px black;
 }
 
-.modal-container {
+/* .modal-container {
   position: fixed;
   z-index: 1;
   left: 0;
@@ -94,7 +84,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-item {
@@ -103,17 +93,37 @@ body {
   background-color: white;
   width: 25em;
   color: black;
-}
+} */
 
 .btn {
-  margin-top: 1rem;
+  /* margin-top: 1rem;
   border: none;
   background-color: blue;
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0px 5px 5px black;
+  box-shadow: 0px 5px 5px black; */
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  color: #fff;
+  background-color: #007bff;
+  margin: 0 0.3rem;
+  box-shadow: 0px 3px 3px black;
+}
+
+.edit {
+  background-color: navy;
+}
+
+.delete {
+  background-color: maroon;
 }
 
 .modal-item .btn {
@@ -125,6 +135,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+  align-items: center;
 }
 
 .form-group input,
@@ -133,8 +144,30 @@ body {
   border-radius: 0.3rem;
   padding: 0.3rem;
   font-size: 1rem;
+  margin: 0.5rem 0;
 }
 
 .form-group label {
   margin-bottom: 0.2rem;
+}
+
+.logout {
+  color: yellow;
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  .displayData {
+    flex-direction: column;
+  }
+  /* .navbar, .navbar-nav {
+    flex-direction: row;
+    align-items: flex-start;
+  } */
+
+
 }

@@ -40,13 +40,6 @@ const AddExpense = () => {
         }
     };
 
-    const handleDateChange = (date) => {
-        setExpenseInfo({
-            ...expenseInfo,
-            expenseDate: date,
-        });
-    };
-
     const handleChange = (event) => {
         const { name, value } = event.target;
         setExpenseInfo({
@@ -58,7 +51,8 @@ const AddExpense = () => {
     return (
         <div>
             <h1>Add Expense</h1>
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={handleFormSubmit} className="form-group">
+                Expense Name:
                 <input
                     name="expenseName"
                     type="text"
@@ -66,6 +60,7 @@ const AddExpense = () => {
                     value={expenseInfo.expenseName}
                     onChange={handleChange}
                 />
+                Expense Amount:
                 <input
                     name="expenseAmount"
                     type="number"
@@ -73,14 +68,7 @@ const AddExpense = () => {
                     value={expenseInfo.expenseAmount}
                     onChange={handleChange}
                 />
-                {/* need to fix so that the date renders properly, maybe in the models? */}
-                {/* <DatePicker
-                    name="expenseDate"
-                    selected={expenseInfo.expenseDate}
-                    onChange={handleDateChange}
-                    placeholderText="Enter expense date"
-                    dateFormat="MM/dd/yyyy"
-                /> */}
+                Expense Frequency: 
                 <select
                     name="expenseFrequency"
                     value={expenseInfo.expenseFrequency}

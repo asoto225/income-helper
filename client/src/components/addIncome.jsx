@@ -51,7 +51,8 @@ const AddIncome = () => {
     return (
         <div>
             <h1>Add Income</h1>
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={handleFormSubmit} className="form-group">
+                Income Name:
                 <input
                     name="incomeName"
                     type="text"
@@ -59,6 +60,7 @@ const AddIncome = () => {
                     value={incomeInfo.incomeName}
                     onChange={handleChange}
                 />
+                Income Amount:
                 <input
                     name="incomeAmount"
                     type="number"
@@ -66,6 +68,7 @@ const AddIncome = () => {
                     value={incomeInfo.incomeAmount}
                     onChange={handleChange}
                 />
+                Income Frequency:
                 <select
                     name="incomeFrequency"
                     value={incomeInfo.incomeFrequency}
