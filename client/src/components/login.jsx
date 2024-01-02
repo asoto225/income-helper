@@ -16,31 +16,31 @@ const Login = () => {
         });
     };
 
-        const handleFormSubmit = async (event) => {
-            event.preventDefault();
-            console.log(formState);
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        console.log(formState);
 
-            try {
-                const { data } = await login({
-                    variables: { ...formState },
-                });
+        try {
+            const { data } = await login({
+                variables: { ...formState },
+            });
 
-                AuthService.login(data.login.token);
-                <Navigate to="/dashboard" />
-            } catch (e) {
-                console.error(e);
-            }
+            AuthService.login(data.login.token);
+            <Navigate to="/dashboard" />
+        } catch (e) {
+            console.error(e);
+        }
 
-            setFormState({
-                email: '',
-                password: '',
-            })
-        };
-        return (
-            <div>
-                <h2>Login</h2>
-                <form onSubmit={handleFormSubmit}>
-                    <div className="login-container"></div>
+        setFormState({
+            email: '',
+            password: '',
+        })
+    };
+    return (
+        <div className="login-container">
+            <h2>Login</h2>
+            <form onSubmit={handleFormSubmit} >
+                <div className="login-group">
                     <input
                         type="text"
                         name="email"
@@ -48,6 +48,8 @@ const Login = () => {
                         onChange={handleChange}
                         placeholder="Enter Email"
                     />
+                </div>
+                <div className="login-group">
                     <input
                         type="password"
                         name="password"
@@ -55,11 +57,16 @@ const Login = () => {
                         onChange={handleChange}
                         placeholder="Enter your password"
                     />
-                    <button type="submit" className="button-login">Login</button>
-                </form>
-                {error && <p>Error: {error.message}</p>}
+                </div>
+                <button type="submit" className="button-login btn">Login</button>
+            </form>
+            <div className="create-account">
+                <p>Don't have an account? <br></br>
+                    <Link to="/createAccount"> Create New Account</Link></p>
             </div>
-        )
-    }
+            {error && <p className="error-message">Error: Email or Password is incorrect</p>}
+        </div>
+    )
+}
 
-    export default Login;
+export default Login;

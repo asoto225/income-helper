@@ -162,6 +162,127 @@ body {
   opacity: 0.7;
 }
 
+.login-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 50px;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.login-group{
+  margin-bottom: 15px;
+}
+
+.login-group input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 0px 3px 3px black;;
+}
+
+.button-login {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-login:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.create-account {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.create-account p {
+  margin: 0;
+}
+
+.create-account a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.create-account a:hover {
+  text-decoration: underline;
+}
+
+.signup-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 50px;
+}
+
+.signup-group {
+  margin-bottom: 15px;
+}
+
+.signup-group input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 0px 3px 3px black;;
+}
+
+.back-to-login {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.back-to-login p {
+  margin: 0;
+}
+
+.back-to-login a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-to-login a:hover {
+  text-decoration: underline;
+}
+
+.welcome-message {
+  text-align: center;
+  font-size: 24px;
+  color: #fff; /* Choose your desired text color */
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-message strong {
+  font-weight: bold;
+  color: #2ECC40; /* Choose a color for the emphasized text */
+}
+
+.welcome-message p {
+  width: 50%;
+}
+
 /* changing appearance of scroll bar */
 /* For WebKit browsers (Chrome, Safari) */
 ::-webkit-scrollbar {

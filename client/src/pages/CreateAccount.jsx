@@ -43,9 +43,7 @@ const CreateAccount = () => {
                     username: formState.username,
                     email: formState.email,
                     password: formState.password,
-                    // goalExercise: parseInt(formState.goalExercise),
-                    // goalNutrition: parseInt(formState.goalNutrition),
-                 },
+                },
             });
 
             Auth.login(data.addUser.token);
@@ -59,59 +57,52 @@ const CreateAccount = () => {
         }
     };
 
-    const styles = {
-        errorMessage: {
-            color: 'black',
-            marginTop: 20,
-            fontSize: 20,
-            fontWeight: 'bold',
-        },
-    };
-
     return (
-        <div id="create-account" className="home-container">
-            <div className="signup-box">
-                <h2>Create an Account</h2>
-                <form onSubmit={handleFormSubmit}>
+        <div id="create-account" className="signup-container">
+            <h2>Create an Account</h2>
+            <form onSubmit={handleFormSubmit}>
+                <div className="signup-group">
                     <input
-                    className="form-group"
-                    placeholder="Your username"
-                    name="username"
-                    type="text"
-                    value={formState.username}
-                    onChange={handleChange}
+                        placeholder="Your username"
+                        name="username"
+                        type="text"
+                        value={formState.username}
+                        onChange={handleChange}
                     />
-                    <input
-                    className="form-group"
-                    placeholder="Your email"
-                    name="email"
-                    type="text"
-                    value={formState.email}
-                    onChange={handleChange}
-                    />
-                    <input
-                    className="form-group"
-                    placeholder="Your password"
-                    name="password"
-                    type="password"
-                    value={formState.password}
-                    onChange={handleChange}
-                    />
-                    <button
-                    className="login-button"
-                    type="submit"
-                    >
-                        Create Account
-                    </button>
-                </form>
-                {error && (
-                    <div className='errorMessage' style={styles.errorMessage}>
-                        {validationError}
-                    </div>
-                )}
-                <div className="form-group">
-                    <Link to="/" className="signup-button">Back to Home</Link>
                 </div>
+                <div className="signup-group">
+                    <input
+                        placeholder="Your email"
+                        name="email"
+                        type="text"
+                        value={formState.email}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="signup-group">
+                    <input
+                        placeholder="Your password"
+                        name="password"
+                        type="password"
+                        value={formState.password}
+                        onChange={handleChange}
+                    />
+                </div>
+                <button
+                    className="button-login btn"
+                    type="submit"
+                >
+                    Create Account
+                </button>
+            </form>
+            {error && (
+                <div className='error-message'>
+                    {validationError}
+                </div>
+            )}
+            <div className="back-to-login">
+                <p>Already have an account?</p>
+                <Link to="/" className="signup-button">Back to Login</Link>
             </div>
         </div>
     );

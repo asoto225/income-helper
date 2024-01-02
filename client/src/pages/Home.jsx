@@ -1,17 +1,20 @@
 import React from "react";
 import Login from "../components/Login";
-import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
     <div>
-      <h1>Home Page</h1>
-      <div>
-        <Login />
+      <div className="welcome-message">
+        <h2>Welcome to <strong>Spender Sense!</strong></h2>
+        <p>
+          Trouble with your budget? Take control of your finances and manage your monthly expenses
+          effortlessly.
+          Log in to your account and start your journey towards financial
+          freedom today!
+        </p>
       </div>
       <div>
-        <p>Don't have an account? <br></br>
-          <Link to="/createAccount"> Create New Account</Link></p>
+        <Login />
       </div>
     </div>
   );
