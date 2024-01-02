@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { QUERY_INCOME } from "../utils/queries";
 import { EDIT_INCOME } from "../utils/mutations";
 
@@ -55,24 +55,20 @@ const EditIncome = () => {
 
     return (
         <div>
-            <h1>Edit Page</h1>
-            <label>
+            <h1 className="addTitle">Edit Income</h1>
+            <form className="form-group">
                 Name:
                 <input
                     type="text"
                     value={incomeData.name}
                     onChange={(e) => setIncomeData({ ...incomeData, name: e.target.value })}
                 />
-            </label>
-            <label>
                 Amount:
                 <input
                     type="number"
                     value={incomeData.amount}
                     onChange={(e) => setIncomeData({ ...incomeData, amount: e.target.value })}
                 />
-            </label>
-            <label>
                 Frequency:
                 <select
                     type="text"
@@ -83,11 +79,9 @@ const EditIncome = () => {
                     <option value="Biweekly">Biweekly</option>
                     <option value="Monthly">Monthly</option>
                 </select>
-            </label>
-            <button onClick={handleIncomeEdit}>Save Changes</button>
-            <h2>Edit Page</h2>
-            <p>Data: {id}</p>
-            <p>Data:</p>
+                <button onClick={handleIncomeEdit} className="btn">Save Changes</button>
+            <Link to="/dashboard" className="btn delete">Cancel</Link>
+            </form>
         </div>
     )
 }

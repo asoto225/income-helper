@@ -3,7 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_INCOME } from "../utils/mutations";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import AuthService from "../utils/auth";
 
 const AddIncome = () => {
@@ -20,6 +20,15 @@ const AddIncome = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
+            //checks if income name is unique, names need to be unique to avoid confusion when editing or deleting incomes.
+            const existingIncomeName = incomeInfo.incomeName;
+            const isNameUnique = !existingIncomeName.includes(incomeInfo.incomeName)
+            
+            if (!isNameUnique) {
+                window.alert("You already have an income with this name. Please enter a unique name for this income.");
+                return;
+            }
+            
             // define an asnyc function to execute the mutation using the destructured formState object fields as arguments.
             const { data } = await addIncome({
                 variables: { 
@@ -50,7 +59,7 @@ const AddIncome = () => {
 
     return (
         <div>
-            <h1>Add Income</h1>
+            <h1 className="addTitle">Add Income</h1>
             <form onSubmit={handleFormSubmit} className="form-group">
                 Income Name:
                 <input
@@ -79,13 +88,10 @@ const AddIncome = () => {
                     <option value="Biweekly">Biweekly</option>
                     <option value="Weekly">Weekly</option>
                 </select>
-                <button type="submit">Add Income</button>
+                <button type="submit" className="btn">Submit</button>
+                <Link to="/dashboard" className="btn delete">Cancel</Link>
             </form>
             {error && <div>Something went wrong...</div>}
-
-            <div className="dashboardBtn">
-                <Link to="/dashboard">Back to Dashboard</Link>
-            </div>
         </div>
     );
 }

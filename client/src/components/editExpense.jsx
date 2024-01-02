@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { QUERY_EXPENSE } from "../utils/queries";
 import { EDIT_EXPENSE } from "../utils/mutations";
 
@@ -55,24 +55,22 @@ const EditExpense = () => {
 
     return (
         <div>
-            <h1>Edit Expense Page</h1>
-            <label>
+            <h1 className="addTitle">Edit Expense</h1>
+            <form className="form-group">
                 Name:
                 <input
                     type="text"
                     value={expenseData.name}
                     onChange={(e) => setExpenseData({ ...expenseData, name: e.target.value })}
                 />
-            </label>
-            <label>
+
                 Amount:
                 <input
                     type="number"
                     value={expenseData.amount}
                     onChange={(e) => setExpenseData({ ...expenseData, amount: e.target.value })}
                 />
-            </label>
-            <label>
+
                 Frequency:
                 <select
                     type="text"
@@ -83,11 +81,10 @@ const EditExpense = () => {
                     <option value="Biweekly">Biweekly</option>
                     <option value="Monthly">Monthly</option>
                 </select>
-            </label>
-            <button onClick={handleExpenseEdit}>Save Changes</button>
-            <h2>Edit Page</h2>
-            <p>Data: {id}</p>
-            <p>Data:</p>
+                <button onClick={handleExpenseEdit} className="btn">Save Changes</button>
+                <Link to="/dashboard" className="btn delete">Cancel</Link>
+            </form>
+            {error && <div>Something went wrong, please try again...</div>}
         </div>
     )
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_EXPENSE } from "../utils/mutations";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import AuthService from "../utils/auth";
 import '../App.css'
 
@@ -20,6 +20,14 @@ const AddExpense = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
+            // checks if expense name is unique, names need to be unique to avoid confusion when editing or deleting expenses.
+            const existingExpenseName = expenseInfo.expenseName;
+            const isNameUnique = !existingExpenseName.includes(expenseInfo.expenseName)
+            
+            if (!isNameUnique) {
+                window.alert("You already have an expense with this name. Please enter a unique name for this expense.");
+                return;
+            }
             const { data } = await addExpense({
                 variables: {
                     expenseName: expenseInfo.expenseName,
@@ -50,7 +58,7 @@ const AddExpense = () => {
 
     return (
         <div>
-            <h1>Add Expense</h1>
+            <h1 className="addTitle">Add Expense</h1>
             <form onSubmit={handleFormSubmit} className="form-group">
                 Expense Name:
                 <input
@@ -79,13 +87,10 @@ const AddExpense = () => {
                     <option value="Biweekly">Biweekly</option>
                     <option value="Weekly">Weekly</option>
                 </select>
-                <button type="submit">Add Expense</button>
+                <button type="submit" className="btn">Submit</button>
+                <Link to="/dashboard" className="btn delete">Cancel</Link>
             </form>
             {error && <div>Something went wrong...</div>}
-
-            <div className="dashboardBtn">
-                <Link to="/dashboard">Back to Dashboard</Link>
-            </div>
         </div>
     );
 }
