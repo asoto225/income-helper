@@ -8,7 +8,6 @@ const incomeSchema = new Schema({
         trim: true,
         min: 1,
         max: 280,
-        unique: true,
     },
     incomeAmount: {
         type: Number,

@@ -20,15 +20,6 @@ const AddIncome = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
-            //checks if income name is unique, names need to be unique to avoid confusion when editing or deleting incomes.
-            const existingIncomeName = incomeInfo.incomeName;
-            const isNameUnique = !existingIncomeName.includes(incomeInfo.incomeName)
-            
-            if (!isNameUnique) {
-                window.alert("You already have an income with this name. Please enter a unique name for this income.");
-                return;
-            }
-            
             // define an asnyc function to execute the mutation using the destructured formState object fields as arguments.
             const { data } = await addIncome({
                 variables: { 

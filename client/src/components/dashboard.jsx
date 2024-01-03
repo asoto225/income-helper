@@ -46,6 +46,8 @@ const Dashboard = () => {
         return total + adjustedAmount;
     }, 0);
 
+    const totalNetIncome = totalIncome - totalExpense;
+
     //delete income function
     const handleDeleteIncome = async (incomeId) => {
         try {
@@ -73,6 +75,14 @@ const Dashboard = () => {
             window.alert("Something went wrong, please try again.");
         }
     };
+
+    const disappear = () => {
+        if (income.length === 0 && expense.length === 0) {
+            return { display: "none" };
+        } else {
+            return { display: "block" };
+        }
+    }
 
     return (
         <div>
@@ -123,25 +133,25 @@ const Dashboard = () => {
                         ))}
                     </div>
                 </div>
-                <div className="totals">
-                    <div className="totalsData">
-                        <h2>Total Monthly Income:</h2>
-                        <div>
-                            {totalIncome}
+                <div className="totals" style={disappear()}>
+                        <div className="totalsData">
+                            <h2>Total Monthly Income:</h2>
+                            <div>
+                                {totalIncome}
+                            </div>
                         </div>
-                    </div>
-                    <div className="totalsData">
-                        <h2>Total Monthly Expenses:</h2>
-                        <div>
-                            {totalExpense}
+                        <div className="totalsData">
+                            <h2>Total Monthly Expenses:</h2>
+                            <div>
+                                {totalExpense}
+                            </div>
                         </div>
-                    </div>
-                    <div className="totalsData">
-                        <h2>Monthly Net Income:</h2>
-                        <div>
-                            {totalIncome - totalExpense}
+                        <div className="totalsData">
+                            <h2>Monthly Net Income:</h2>
+                            <div>
+                                {totalNetIncome}
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

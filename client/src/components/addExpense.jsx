@@ -20,26 +20,16 @@ const AddExpense = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
-            // checks if expense name is unique, names need to be unique to avoid confusion when editing or deleting expenses.
-            const existingExpenseName = expenseInfo.expenseName;
-            const isNameUnique = !existingExpenseName.includes(expenseInfo.expenseName)
-            
-            if (!isNameUnique) {
-                window.alert("You already have an expense with this name. Please enter a unique name for this expense.");
-                return;
-            }
             const { data } = await addExpense({
                 variables: {
                     expenseName: expenseInfo.expenseName,
                     expenseAmount: parseInt(expenseInfo.expenseAmount),
-                    // expenseDate: expenseInfo.expenseDate,
                     expenseFrequency: expenseInfo.expenseFrequency,
                     expenseAuthor: AuthService.getProfile().data.username,
                  },
             });
             console.log("expense added successfully:",data);
             window.alert("expense added successfully");
-            // delete expenseDate if no longer needed once finished. 
             setExpenseInfo({ expenseName: '', expenseAmount: '', expenseFrequency: '' });
             navigate("/dashboard")
         } catch (e) {

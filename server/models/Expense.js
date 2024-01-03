@@ -7,7 +7,6 @@ const expenseSchema = new Schema({
         trim: true,
         min: 1,
         max: 280,
-        unique: true,
     },
     expenseAmount: {
         type: Number,

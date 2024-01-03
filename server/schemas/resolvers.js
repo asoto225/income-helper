@@ -60,7 +60,6 @@ const resolvers = {
                 const income = await Income.create({
                     incomeName,
                     incomeAmount,
-                    // incomeDate,
                     incomeFrequency,
                     incomeAuthor: context.user.username,
                 });
@@ -107,7 +106,6 @@ const resolvers = {
                 const expense = await Expense.create({
                     expenseName,
                     expenseAmount,
-                    // expenseDate,
                     expenseFrequency,
                     expenseAuthor: context.user.username,
                 });
