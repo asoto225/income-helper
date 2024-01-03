@@ -92,7 +92,7 @@ const Dashboard = () => {
                     <div className="expensesAndIncomeData">
                         {/* Renders income data by mapping through income attached to the user. */}
                         <h2 className="incomeTitle">Income:</h2>
-                        {(income.length === 0) ? <h3 className="noData">No income added yet. Add your income to get started!</h3> : null}
+                        {(income.length === 0) ? <p className="noData">No income added yet. Add your income to get started!</p> : null}
                         {income.map((income) => (
                             <div key={income._id} className="incomeData">
                                 <div>
