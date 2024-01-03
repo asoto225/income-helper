@@ -133,7 +133,8 @@ const Dashboard = () => {
                         ))}
                     </div>
                 </div>
-                <div className="totals" style={disappear()}>
+                { (income.length === 0 && expense.length === 0) ? null : ( 
+                <div className="totals">
                         <div className="totalsData">
                             <h2>Total Monthly Income:</h2>
                             <div>
@@ -153,6 +154,7 @@ const Dashboard = () => {
                             </div>
                         </div>
                 </div>
+                )}
             </div>
         </div>
     )
